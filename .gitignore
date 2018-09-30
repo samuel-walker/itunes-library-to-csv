@@ -1,6 +1,9 @@
 # Ignore iTunes library file; too big
 Library.xml
 
+# Ignore user playlists
+/playlists
+
 # Default python ignores:
 
 # Byte-compiled / optimized / DLL files

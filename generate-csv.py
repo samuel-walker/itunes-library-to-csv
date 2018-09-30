@@ -1,4 +1,4 @@
-# Generate CSV of playlists from iTunes libary XML
+# Generate CSVs of playlists from iTunes libary XML
 
 # Using plistlib to read Apple Proprety List format
 import plistlib
@@ -28,29 +28,30 @@ types = ['Smart Info','Genius Track ID','Folder']
 with open('Library.xml', 'rb') as fp:
     pl = plistlib.load(fp)
 
-# Open CSV for writing
-with open('songs.csv', 'wt', newline='') as f:
-    writer = csv.writer(f)
-    writer.writerow(('playlist', 'name', 'artist', 'album'))
-    # Iterate over library file to find desired playlists
-    for i in pl['Playlists']:
-        # If playlist is in ignore lists, ignore it
-        if i['Name'] in lists:
-            print('Ignore')
-        elif True:
-            # If playlist is in ignored types, ignore it
-            for type in types:
-                if type in i:
-                    print('Ignore')
-                    ignore = True
-                else:
-                    ignore = False
-            # Otherwise, we want it
-            if ignore == True:
-                continue
+
+# Iterate over library file to find desired playlists
+for i in pl['Playlists']:
+    # If playlist is in ignore lists, ignore it
+    if i['Name'] in lists:
+        print('Ignore')
+    elif True:
+        # If playlist is in ignored types, ignore it
+        for type in types:
+            if type in i:
+                print('Ignore')
+                ignore = True
             else:
-                playlist = i['Name']
-                print(playlist)
+                ignore = False
+        # Otherwise, we want it
+        if ignore == True:
+            continue
+        else:
+            playlist = i['Name'].replace('/', '')
+            print(playlist)
+            # Open CSV for writing
+            with open(playlist + '.csv', 'wt', newline='') as f:
+                writer = csv.writer(f)
+                writer.writerow(('name', 'artist', 'album'))
                 # Iterate over playlist items to find Track IDs
                 for item in i['Playlist Items']:
                     trackID = item['Track ID']
@@ -62,6 +63,6 @@ with open('songs.csv', 'wt', newline='') as f:
                             t = pl['Tracks'][str(track)]
                             print(t['Name'])
                             # Grab info from track
-                            row = [playlist,t['Name'],t['Artist'],t['Album']]
+                            row = [t['Name'],t['Artist'],t['Album']]
                             # Add info to the CSV
                             writer.writerows([row])
