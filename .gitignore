@@ -1,3 +1,9 @@
+# Ignore iTunes library file; too big
+
+Library.xml
+
+# Default python ignores:
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
