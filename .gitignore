@@ -4,6 +4,10 @@ Library.xml
 # Ignore user playlists
 /playlists
 
+# Ignore personalized playlist script
+sam-playlists.py
+sams-generate-csv.py
+
 # Default python ignores:
 
 # Byte-compiled / optimized / DLL files
