@@ -1,4 +1,4 @@
-# itunes-to-gpm
+# itunes-library-to-csv
 
 This program reads in an iTunes library (exported as Library.xml, File > Library > Export Library) and writes out CSV files of track name, artist, and album for each playlist.
 
