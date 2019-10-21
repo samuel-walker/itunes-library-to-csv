@@ -48,7 +48,7 @@ for i in pl['Playlists']:
             print('Writing: '+ playlist)
         ignore = False
         # Open CSV for writing
-        with open('playlists/' + playlist + '.csv', 'wt', errors='ignore',
+        with open('playlists/' + playlist + '.csv', 'wt+', errors='ignore',
         newline='') as f:
             writer = csv.writer(f)
             # header, uncomment if desired
